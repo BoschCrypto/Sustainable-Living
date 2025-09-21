@@ -1,182 +1,112 @@
 /* =========================
    UPDATE AN OLD SITE — CSS
-   Matches your textbook steps
+   (matches your guide/images)
    ========================= */
 
 /* --- Global Backgrounds, Colors, Widths --- */
-/* 1) Universal box sizing */
-* { box-sizing: border-box; }
-
-/* 2) Base font and body margins */
+* { box-sizing: border-box; }                         /* 1 */
 html { font-size: 16px; }
-body {
+body {                                                /* 2 */
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5;
-  background: #efefef;   /* page bg around centered content */
+  background: #efefef;
   color: #111;
 }
 
-/* 3) Header, nav list, and content wrapper widths */
+/* 3: header, nav list, content wrap centered to 90% / max 1200 */
 header,
 nav ul,
 #content-wrapper {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;        /* centers these blocks */
+  margin: 0 auto;
 }
 
-/* 4) Link color (site-wide). Nav overrides below. */
+/* 4: default link color */
 a { color: #008000; }
 a:hover { color: #075a22; }
 
-/* --- Logo placement (Header/Logo section) --- */
-/* 1) Logo absolutely at top-left of the header */
-#logo { position: absolute; top: 0; left: 0; }
-
-/* 2) Header positioned relatively so logo offsets from header */
-header { position: relative; padding: .6rem 0 .4rem; }
-
-/* 3) Pad header h1 and nav list so text clears the logo */
-header h1,
-nav ul { padding-left: 50px; }
+/* --- Header / Logo --- */
+header {
+  position: relative;                                 /* let logo offset from header */
+  padding: .6rem 0 .4rem;
+}
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: left;                                   /* ensure left, not centered */
+  padding-left: 50px;                                 /* clear the logo (step calls for 50px) */
+}
+#logo {
+  position: absolute;                                 /* 1 */
+  top: 0;
+  left: 0;
+}
 
 /* --- Navbar --- */
 nav {
-  background: #008000;     /* spans full window width */
-  border-top: 4px solid #1eaa39;   /* accent strip like screenshot */
+  background: #008000;                                /* full-width green bar */
+  border-top: 4px solid #1eaa39;                      /* accent like figure */
 }
-
-/* 2) Remove markers */
-nav ul { list-style: none; padding: 0; margin: 0; }
-
-/* 3) li inline-block */
-nav li { display: inline-block; }
-
-/* 4) anchors inline-block, white, bold, no underline */
-nav a {
+nav ul {                                              /* 2 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav li { display: inline-block; }                     /* 3 */
+nav a {                                               /* 4 */
   display: inline-block;
   padding: 1rem;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
 }
-
-/* 5) hover: black bg + greenish text */
-nav a:hover {
+nav a:hover {                                         /* 5 */
   background: #000;
   color: #9ae39a;
 }
 
-/* --- Main: intro/article image --- */
-/* Float the oven image, double border, wrap text */
-main article img {
-  border: 3px double #333;
-  float: left;
-  margin: .5rem 1rem .5rem 0;
-  height: auto;
-  max-width: 100%;
+/* --- Two-column page layout (sidebar + main) --- */
+#content-wrapper {
+  display: flex;                                      /* flex container */
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 10px;
 }
 
-/* --- Sidebar (EPA Resources) --- */
+/* Sidebar column — fixed width like the reference */
+#content-wrapper > aside {
+  background: #ccc;                                   /* grey slab behind cards */
+  padding: .5rem;
+  margin-right: 1rem;
+  position: relative;
+  top: 20px;                                          /* nudge to align with main image */
+  order: 1;                                           /* left column */
+  flex: 0 0 240px;                                    /* fixed ~240px like screenshot */
+  max-width: 240px;
+}
+#content-wrapper > main {
+  order: 2;                                           /* right column */
+  flex: 1;                                            /* fill remaining space */
+}
+
+/* Sidebar content blocks */
+aside h2 {
+  margin: 0 0 .5rem 0;
+  white-space: nowrap;                                /* matches guide */
+}
 aside section {
   background: #fff;
   border: 1px solid #008000;
   margin-bottom: 1rem;
 }
-
-/* section headings inside sidebar */
 aside h3 {
   background: #008000;
   color: #fff;
   padding: .5rem;
   margin: 0;
+  font-weight: 700;
 }
-
-/* links in sidebar as padded inline-blocks */
-aside a { display: inline-block; padding: .5rem; }
-
-/* --- Home Page Columns (overall two-column layout) --- */
-/* 1) content wrapper is flex container */
-#content-wrapper {
-  display: flex;
-  gap: 0;                 /* we’ll control spacing with margins */
-  align-items: flex-start;
-}
-
-/* 2) style the sidebar column */
-#content-wrapper > aside {
-  background: #ccc;
-  margin-right: 1rem;
-  padding: .5rem;
-  position: relative;
-  top: 20px;             /* nudge down to align like figure */
-  order: 1;              /* ensure left column */
-  flex: 1;               /* proportional width 1 */
-}
-
-/* 3) tidy headings within sidebar */
-#content-wrapper > aside h2 {
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-/* 4) main column on the right, wider */
-#content-wrapper > main {
-  order: 2;              /* ensure right column */
-  flex: 4;               /* 4x width of sidebar */
-}
-
-/* --- Bottom Columns (Rain/Compost/Solar) --- */
-/* 1) Your HTML now wraps each H2+link inside its own div */
-/* 2) section inside main becomes flex container */
-main > section {
-  display: flex;
-  margin-top: 1rem;
-}
-
-/* 3) style each column box */
-main > section > div {
-  background: #e7f7e7;               /* pale green panel */
-  border: 1px solid #008000;
-  border-radius: 10px;
-  text-align: center;
-  flex: 1;
-  margin-right: 1rem;
-  padding-bottom: .5rem;
-}
-
-/* 4) remove right margin on the last */
-main > section > div:last-child { margin-right: 0; }
-
-/* 5) style the heading bar on each column */
-main > section > div > h2 {
-  background: #008000;
-  color: #fff;
-  margin: 0;                         /* remove top margin */
-  padding: .4rem .6rem;
-  border-radius: 10px 10px 0 0;
-  font-size: 1.1rem;
-}
-
-/* 6) center and frame the image inside each column */
-main > section > div img {
-  display: block;                    /* so margin auto centers */
-  margin: .5rem auto;
-  border: 3px double #333;
-  max-width: 90%;
-  height: auto;
-}
-
-/* small helper so caption (the <p> inside your link) looks neat */
-main > section > div a { text-decoration: none; }
-main > section > div a p { margin: .3rem 0 .6rem; color: #008000; }
-
-/* --- Footer (simple) --- */
-footer {
-  width: 90%;
-  max-width: 1200px;
-  margin: 1.25rem auto 2rem;
-  color: #333;
-  font-size: .9rem;
-}
+aside a { display: inl
