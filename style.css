@@ -1,223 +1,182 @@
 /* =========================
-   Sustainable Theme (Jordan)
-   External Stylesheet
+   UPDATE AN OLD SITE — CSS
+   Matches your textbook steps
    ========================= */
 
-/* ---- Base / Reset ---- */
+/* --- Global Backgrounds, Colors, Widths --- */
+/* 1) Universal box sizing */
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+
+/* 2) Base font and body margins */
+html { font-size: 16px; }
 body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5;
+  background: #efefef;   /* page bg around centered content */
   color: #111;
-  background: #efefef; /* page background around content */
 }
-img { max-width: 100%; height: auto; display: block; }
-a { color: #0c7a2e; text-decoration: underline; }
+
+/* 3) Header, nav list, and content wrapper widths */
+header,
+nav ul,
+#content-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;        /* centers these blocks */
+}
+
+/* 4) Link color (site-wide). Nav overrides below. */
+a { color: #008000; }
 a:hover { color: #075a22; }
 
-/* ---- Color tokens (no CSS variables to keep it simple) ---- */
- /* Dark nav/header green */    /* #0c7a2e */
- /* Medium accent green */      /* #1eaa39 */
- /* Light green panel edges */  /* #cfe8cf */
- /* Sidebar grey */             /* #e5e5e5 */
+/* --- Logo placement (Header/Logo section) --- */
+/* 1) Logo absolutely at top-left of the header */
+#logo { position: absolute; top: 0; left: 0; }
 
-/* ---- Page width ---- */
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
+/* 2) Header positioned relatively so logo offsets from header */
+header { position: relative; padding: .6rem 0 .4rem; }
 
-/* =========================
-   Header + Top Navigation
-   ========================= */
-.site-header {
-  background: #0c7a2e; /* dark green bar */
-  color: #fff;
-  border-bottom: 4px solid #1eaa39; /* thin accent strip */
-}
-.branding {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0 6px;
-}
-.branding img.logo {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-}
-.site-title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
+/* 3) Pad header h1 and nav list so text clears the logo */
+header h1,
+nav ul { padding-left: 50px; }
+
+/* --- Navbar --- */
+nav {
+  background: #008000;     /* spans full window width */
+  border-top: 4px solid #1eaa39;   /* accent strip like screenshot */
 }
 
-/* nav bar */
-.primary-nav {
-  background: #0c7a2e;
-  padding: 8px 0 12px;
-}
-.primary-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 10px;
-  margin: 0; padding: 0;
-}
-.primary-nav a {
+/* 2) Remove markers */
+nav ul { list-style: none; padding: 0; margin: 0; }
+
+/* 3) li inline-block */
+nav li { display: inline-block; }
+
+/* 4) anchors inline-block, white, bold, no underline */
+nav a {
   display: inline-block;
-  padding: 6px 12px;
-  color: #fff;
+  padding: 1rem;
   text-decoration: none;
-  background: #0c7a2e;               /* blend into bar */
-  border: 1px solid #0a6526;
-  border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
-  transition: background .15s ease;
-}
-.primary-nav a:hover,
-.primary-nav a.active,
-.primary-nav a[aria-current="page"] {
-  background: #1eaa39;               /* brighter on hover/active */
-  border-color: #178c30;
-}
-
-/* =========================
-   Two-column Layout
-   ========================= */
-.layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;   /* sidebar + main */
-  gap: 18px;
-  margin: 18px 0 26px;
-}
-@media (max-width: 860px) {
-  .layout { grid-template-columns: 1fr; }
-}
-
-/* =========================
-   Sidebar (EPA Resources)
-   ========================= */
-.sidebar {
-  background: #e5e5e5;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px;
-  padding: 14px 0;
-}
-
-/* big title bar */
-.sidebar .widget-title {
-  margin: 0 14px 10px;
-  background: #0c7a2e;
   color: #fff;
-  padding: 10px 12px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 18px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
+  font-weight: bold;
 }
 
-/* inner green section headers */
-.sidebar .section-title {
-  margin: 12px 14px 6px;
-  background: #1eaa39;
+/* 5) hover: black bg + greenish text */
+nav a:hover {
+  background: #000;
+  color: #9ae39a;
+}
+
+/* --- Main: intro/article image --- */
+/* Float the oven image, double border, wrap text */
+main article img {
+  border: 3px double #333;
+  float: left;
+  margin: .5rem 1rem .5rem 0;
+  height: auto;
+  max-width: 100%;
+}
+
+/* --- Sidebar (EPA Resources) --- */
+aside section {
+  background: #fff;
+  border: 1px solid #008000;
+  margin-bottom: 1rem;
+}
+
+/* section headings inside sidebar */
+aside h3 {
+  background: #008000;
   color: #fff;
-  padding: 8px 10px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 14px;
+  padding: .5rem;
+  margin: 0;
 }
-.sidebar ul {
-  list-style: none;
-  margin: 0 14px 14px;
-  padding: 8px 10px;
-  background: #fff;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px;
-}
-.sidebar li + li { margin-top: 8px; }
-.sidebar a { text-decoration: underline; color: #0c7a2e; }
 
-/* =========================
-   Main: Intro block
-   ========================= */
-.intro {
-  background: #fff;
-  border: 1px solid #cfcfcf;
-  border-radius: 6px;
-  padding: 14px;
-}
-.intro-grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;   /* image + text */
-  gap: 14px;
-}
-@media (max-width: 740px) { .intro-grid { grid-template-columns: 1fr; } }
+/* links in sidebar as padded inline-blocks */
+aside a { display: inline-block; padding: .5rem; }
 
-.intro h1 {
-  margin: 0 0 10px;
-  font-size: 22px;
-  color: #0c7a2e;
+/* --- Home Page Columns (overall two-column layout) --- */
+/* 1) content wrapper is flex container */
+#content-wrapper {
+  display: flex;
+  gap: 0;                 /* we’ll control spacing with margins */
+  align-items: flex-start;
 }
-.intro p { margin: 0 0 10px; }
-.intro p em, .intro a { color: #0c7a2e; }
 
-/* =========================
-   Feature Panels (3-up)
-   ========================= */
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 16px;
+/* 2) style the sidebar column */
+#content-wrapper > aside {
+  background: #ccc;
+  margin-right: 1rem;
+  padding: .5rem;
+  position: relative;
+  top: 20px;             /* nudge down to align like figure */
+  order: 1;              /* ensure left column */
+  flex: 1;               /* proportional width 1 */
 }
-@media (max-width: 920px) { .feature-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .feature-grid { grid-template-columns: 1fr; } }
 
-/* Card with green header bar */
-.feature {
-  border: 2px solid #1eaa39;
-  border-radius: 6px;
-  background: #fff;
-  overflow: hidden;
+/* 3) tidy headings within sidebar */
+#content-wrapper > aside h2 {
+  margin-top: 0;
+  white-space: nowrap;
 }
-.feature .feature-head {
-  background: #1eaa39;
+
+/* 4) main column on the right, wider */
+#content-wrapper > main {
+  order: 2;              /* ensure right column */
+  flex: 4;               /* 4x width of sidebar */
+}
+
+/* --- Bottom Columns (Rain/Compost/Solar) --- */
+/* 1) Your HTML now wraps each H2+link inside its own div */
+/* 2) section inside main becomes flex container */
+main > section {
+  display: flex;
+  margin-top: 1rem;
+}
+
+/* 3) style each column box */
+main > section > div {
+  background: #e7f7e7;               /* pale green panel */
+  border: 1px solid #008000;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin-right: 1rem;
+  padding-bottom: .5rem;
+}
+
+/* 4) remove right margin on the last */
+main > section > div:last-child { margin-right: 0; }
+
+/* 5) style the heading bar on each column */
+main > section > div > h2 {
+  background: #008000;
   color: #fff;
-  font-weight: 700;
-  text-align: center;
-  padding: 10px 8px;
-  font-size: 18px;
-}
-.feature .feature-body {
-  padding: 10px;
-}
-.feature .feature-body img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border: 1px solid #cfe8cf;     /* subtle green surround like screenshot */
-  border-radius: 4px;
-}
-.feature .feature-foot {
-  padding: 8px 10px 12px;
-  text-align: center;
-}
-.feature .feature-foot a {
-  text-decoration: underline;
-  color: #0c7a2e;
-  font-weight: 700;
+  margin: 0;                         /* remove top margin */
+  padding: .4rem .6rem;
+  border-radius: 10px 10px 0 0;
+  font-size: 1.1rem;
 }
 
-/* =========================
-   Footer
-   ========================= */
-.site-footer {
-  text-align: center;
-  color: #444;
-  padding: 14px 0 30px;
-  font-size: 14px;
+/* 6) center and frame the image inside each column */
+main > section > div img {
+  display: block;                    /* so margin auto centers */
+  margin: .5rem auto;
+  border: 3px double #333;
+  max-width: 90%;
+  height: auto;
 }
 
+/* small helper so caption (the <p> inside your link) looks neat */
+main > section > div a { text-decoration: none; }
+main > section > div a p { margin: .3rem 0 .6rem; color: #008000; }
+
+/* --- Footer (simple) --- */
+footer {
+  width: 90%;
+  max-width: 1200px;
+  margin: 1.25rem auto 2rem;
+  color: #333;
+  font-size: .9rem;
+}
