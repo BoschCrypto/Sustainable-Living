@@ -1,35 +1,28 @@
 /* =========================
-   UPDATE AN OLD SITE — CSS
-   (matches the guide screenshots)
+   Sustainable Living — Full CSS
    ========================= */
 
-/* --- Global Backgrounds, Colors, Widths --- */
-* { box-sizing: border-box; }                         /* 1. universal box-sizing */
-
+/* Global */
+* { box-sizing: border-box; }
 html { font-size: 16px; }
-body {                                                /* 2. base font + remove margins */
+body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5;
-  background: #efefef;                                /* page background outside content */
+  background: #efefef;
   color: #111;
 }
 
-/* 3. header, nav ul, and content wrapper centered to 90% width / max 1200px */
+/* Center the main regions to 90% / max 1200px (per guide) */
 header,
-/* Nav links start just to the right of the J */
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  /* key changes */
-  text-align: left;     /* was center */
-  padding-left: 70px;   /* pushes links to the right of the J; tweak 60–80px if needed */
+nav ul,
+#content-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-
-/* 4. hyperlink color */
+/* Default links */
 a { color: #008000; }
 a:hover { color: #075a22; }
 
@@ -37,51 +30,59 @@ a:hover { color: #075a22; }
    Header + Logo
    ========================= */
 header {
-  position: relative;                                 /* lets logo offset from header */
+  position: relative;                 /* lets logo be positioned inside */
   padding: .6rem 0 .4rem;
 }
-
 header h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  padding-left: 50px;                                 /* textbook: clear the logo area */
+  padding-left: 50px;                 /* clears the J area (per guide) */
 }
 
-/* Make the J hang over the green bar */
+/* Make the “J” hang over the green bar */
 #logo{
-  position: absolute;                                 /* relative to header */
+  position: absolute;                 /* positioned relative to <header> */
   left: 0;
-  top: 12px;                                          /* adjust to control overlap */
-  height: 100px;                                      /* matches figure */
+  top: 12px;                          /* adjust for more/less overlap */
+  height: 100px;                      /* matches the figure */
   width: auto;
-  z-index: 10;                                        /* sits above the nav bar */
+  z-index: 10;                        /* sits above the nav bar */
 }
 
 /* =========================
    Navbar
    ========================= */
-nav{
-  background: #008000;                                /* full-width green bar */
-  border-top: 4px solid #1eaa39;                      /* accent strip like screenshot */
+nav {
+  background: #008000;                /* full-width green bar */
+  border-top: 4px solid #1eaa39;      /* accent strip like screenshot */
   position: relative;
-  z-index: 1;                                         /* behind the logo */
+  z-index: 1;                         /* keep behind the J */
 }
 
-/* remove list markers + spacing */
-nav ul { list-style: none; padding: 0; margin: 0; }   /* 2 */
-nav li { display: inline-block; }                     /* 3 */
+/* Center the link row */
+nav ul {
+  list-style: none;
+  margin: 0 auto;                     /* centers the 90% UL in the bar */
+  padding: 0;
+  display: flex;                      /* center links regardless of widths */
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;                          /* spacing between links */
+}
 
-nav a{                                                /* 4 */
+/* Keep li rule (from guide), though flex already handles layout */
+nav li { display: inline-block; }
+
+nav a {
   display: inline-block;
-  padding: 1rem;
+  padding: 1rem 1.1rem;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
 }
-
-nav a:hover{                                          /* 5 */
+nav a:hover {
   background: #000;
   color: #9ae39a;
 }
@@ -90,44 +91,42 @@ nav a:hover{                                          /* 5 */
    Two-Column Layout (Sidebar + Main)
    ========================= */
 #content-wrapper{
-  display: flex;                                      /* 1. flex container */
+  display: flex;
   align-items: flex-start;
   gap: 0;
   margin-top: 10px;
 }
 
-/* Sidebar column */
+/* Sidebar column — fixed width like the reference */
 #content-wrapper > aside{
-  background: #ccc;                                   /* grey slab behind cards */
+  background: #ccc;                   /* grey slab behind the cards */
   padding: .5rem;
   margin-right: 1rem;
   position: relative;
-  top: 20px;                                          /* nudge down to align with main */
-  order: 1;                                           /* shows on the left */
-  flex: 0 0 240px;                                    /* fixed width ~ figure */
+  top: 20px;                          /* nudge to align with main image */
+  order: 1;                           /* left column */
+  flex: 0 0 240px;                    /* ~240px fixed */
   max-width: 240px;
 }
 
-/* Main column */
+/* Main column fills remaining space */
 #content-wrapper > main{
-  order: 2;                                           /* right side */
-  flex: 1;                                            /* fills remaining space */
+  order: 2;                           /* right column */
+  flex: 1;
 }
 
 /* =========================
-   Sidebar sections (EPA cards)
+   Sidebar “EPA Resources” Cards
    ========================= */
 aside h2{
   margin: 0 0 .5rem 0;
   white-space: nowrap;
 }
-
 aside section{
   background: #fff;
   border: 1px solid #008000;
   margin-bottom: 1rem;
 }
-
 aside h3{
   background: #008000;
   color: #fff;
@@ -135,60 +134,54 @@ aside h3{
   margin: 0;
   font-weight: 700;
 }
-
 aside a{ display: inline-block; padding: .5rem; }
 
 /* =========================
-   Main: Article + Hero Image
+   Main Article + Image
    ========================= */
 main article img{
-  border: 3px double #333;                            /* double border */
-  float: left;                                        /* float for text wrap */
-  margin: .5rem 1rem .5rem 0;                         /* top/right/bottom/left */
+  border: 3px double #333;            /* double border (per guide) */
+  float: left;                        /* text wraps around the image */
+  margin: .5rem 1rem .5rem 0;         /* top/right/bottom/left */
   height: auto;
   max-width: 100%;
 }
 main article h2{ margin-top: 0; }
 
 /* =========================
-   Bottom Three Columns
+   Bottom Three Columns (Rain / Compost / Solar)
    ========================= */
-/* HTML wraps each H2 + link in its own div */
 main > section{
-  display: flex;                                      /* 2. flex container */
+  display: flex;
   margin-top: 1rem;
 }
-
 main > section > div{
-  background: #e7f7e7;                                /* pale green panel */
+  background: #e7f7e7;                /* pale green panel */
   border: 1px solid #008000;
   border-radius: 10px;
   text-align: center;
   flex: 1;
-  margin-right: 1rem;                                 /* 3. spacing between columns */
+  margin-right: 1rem;
   padding-bottom: .5rem;
 }
+main > section > div:last-child{ margin-right: 0; }
 
-main > section > div:last-child{ margin-right: 0; }   /* 4. no right margin on last */
-
-main > section > div > h2{                            /* 5. green bar heading */
+main > section > div > h2{
   background: #008000;
   color: #fff;
-  margin: 0;                                          /* remove top margin */
+  margin: 0;                          /* remove top margin (per guide) */
   padding: .4rem .6rem;
-  border-radius: 10px 10px 0 0;                       /* rounded top corners only */
+  border-radius: 10px 10px 0 0;       /* rounded top corners only */
   font-size: 1.1rem;
   font-weight: 700;
 }
-
-main > section > div img{                             /* 6. framed image inside panel */
-  display: block;                                     /* allows centering with auto margins */
+main > section > div img{
+  display: block;                     /* lets auto margins center it */
   margin: .5rem auto;
   border: 3px double #333;
   max-width: 90%;
   height: auto;
 }
-
 main > section > div a{ text-decoration: none; }
 main > section > div a p{ margin: .3rem 0 .6rem; color: #008000; }
 
@@ -202,34 +195,3 @@ footer{
   color: #333;
   font-size: .9rem;
 }
-/* --- Center the nav links in the green bar --- */
-/* keep the 50px padding ONLY on the heading (for the J) */
-header h1 { padding-left: 50px; }
-
-/* remove the left offset from the nav and center the links */
-nav ul {
-  padding-left: 0;        /* was 50px – this was preventing centering */
-  list-style: none;
-  margin: 0 auto;         /* keeps the UL centered within the bar */
-  display: flex;          /* reliably center regardless of item widths */
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;              /* spacing between links */
-}
-
-/* anchors stay the same */
-nav a {
-  display: inline-block;
-  padding: 1rem;
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-}
-nav a:hover {
-  background: #000;
-  color: #9ae39a;
-}
-
-/* ensure the J stays on top of the bar */
-#logo { position: absolute; left: 0; top: 12px; height: 100px; width: auto; z-index: 10; }
-nav { position: relative; z-index: 1; }
