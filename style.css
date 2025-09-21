@@ -1,112 +1,199 @@
 /* =========================
    UPDATE AN OLD SITE — CSS
-   (matches your guide/images)
+   (matches the guide screenshots)
    ========================= */
 
 /* --- Global Backgrounds, Colors, Widths --- */
-* { box-sizing: border-box; }                         /* 1 */
+* { box-sizing: border-box; }                         /* 1. universal box-sizing */
+
 html { font-size: 16px; }
-body {                                                /* 2 */
+body {                                                /* 2. base font + remove margins */
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5;
-  background: #efefef;
+  background: #efefef;                                /* page background outside content */
   color: #111;
 }
 
-/* 3: header, nav list, content wrap centered to 90% / max 1200 */
+/* 3. header, nav ul, and content wrapper centered to 90% width / max 1200px */
 header,
 nav ul,
 #content-wrapper {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto;                                     /* center them */
 }
 
-/* 4: default link color */
+/* 4. hyperlink color */
 a { color: #008000; }
 a:hover { color: #075a22; }
 
-/* --- Header / Logo --- */
+/* =========================
+   Header + Logo
+   ========================= */
 header {
-  position: relative;                                 /* let logo offset from header */
+  position: relative;                                 /* lets logo offset from header */
   padding: .6rem 0 .4rem;
 }
+
 header h1 {
   margin: 0;
   font-size: 2rem;
   font-weight: 700;
-  text-align: left;                                   /* ensure left, not centered */
-  padding-left: 50px;                                 /* clear the logo (step calls for 50px) */
-}
-#logo {
-  position: absolute;                                 /* 1 */
-  top: 0;
-  left: 0;
+  text-align: center;
+  padding-left: 50px;                                 /* textbook: clear the logo area */
 }
 
-/* --- Navbar --- */
-nav {
+/* Make the J hang over the green bar */
+#logo{
+  position: absolute;                                 /* relative to header */
+  left: 0;
+  top: 12px;                                          /* adjust to control overlap */
+  height: 100px;                                      /* matches figure */
+  width: auto;
+  z-index: 10;                                        /* sits above the nav bar */
+}
+
+/* =========================
+   Navbar
+   ========================= */
+nav{
   background: #008000;                                /* full-width green bar */
-  border-top: 4px solid #1eaa39;                      /* accent like figure */
+  border-top: 4px solid #1eaa39;                      /* accent strip like screenshot */
+  position: relative;
+  z-index: 1;                                         /* behind the logo */
 }
-nav ul {                                              /* 2 */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+
+/* remove list markers + spacing */
+nav ul { list-style: none; padding: 0; margin: 0; }   /* 2 */
 nav li { display: inline-block; }                     /* 3 */
-nav a {                                               /* 4 */
+
+nav a{                                                /* 4 */
   display: inline-block;
   padding: 1rem;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
 }
-nav a:hover {                                         /* 5 */
+
+nav a:hover{                                          /* 5 */
   background: #000;
   color: #9ae39a;
 }
 
-/* --- Two-column page layout (sidebar + main) --- */
-#content-wrapper {
-  display: flex;                                      /* flex container */
+/* =========================
+   Two-Column Layout (Sidebar + Main)
+   ========================= */
+#content-wrapper{
+  display: flex;                                      /* 1. flex container */
   align-items: flex-start;
   gap: 0;
   margin-top: 10px;
 }
 
-/* Sidebar column — fixed width like the reference */
-#content-wrapper > aside {
+/* Sidebar column */
+#content-wrapper > aside{
   background: #ccc;                                   /* grey slab behind cards */
   padding: .5rem;
   margin-right: 1rem;
   position: relative;
-  top: 20px;                                          /* nudge to align with main image */
-  order: 1;                                           /* left column */
-  flex: 0 0 240px;                                    /* fixed ~240px like screenshot */
+  top: 20px;                                          /* nudge down to align with main */
+  order: 1;                                           /* shows on the left */
+  flex: 0 0 240px;                                    /* fixed width ~ figure */
   max-width: 240px;
 }
-#content-wrapper > main {
-  order: 2;                                           /* right column */
-  flex: 1;                                            /* fill remaining space */
+
+/* Main column */
+#content-wrapper > main{
+  order: 2;                                           /* right side */
+  flex: 1;                                            /* fills remaining space */
 }
 
-/* Sidebar content blocks */
-aside h2 {
+/* =========================
+   Sidebar sections (EPA cards)
+   ========================= */
+aside h2{
   margin: 0 0 .5rem 0;
-  white-space: nowrap;                                /* matches guide */
+  white-space: nowrap;
 }
-aside section {
+
+aside section{
   background: #fff;
   border: 1px solid #008000;
   margin-bottom: 1rem;
 }
-aside h3 {
+
+aside h3{
   background: #008000;
   color: #fff;
   padding: .5rem;
   margin: 0;
   font-weight: 700;
 }
-aside a { display: inl
+
+aside a{ display: inline-block; padding: .5rem; }
+
+/* =========================
+   Main: Article + Hero Image
+   ========================= */
+main article img{
+  border: 3px double #333;                            /* double border */
+  float: left;                                        /* float for text wrap */
+  margin: .5rem 1rem .5rem 0;                         /* top/right/bottom/left */
+  height: auto;
+  max-width: 100%;
+}
+main article h2{ margin-top: 0; }
+
+/* =========================
+   Bottom Three Columns
+   ========================= */
+/* HTML wraps each H2 + link in its own div */
+main > section{
+  display: flex;                                      /* 2. flex container */
+  margin-top: 1rem;
+}
+
+main > section > div{
+  background: #e7f7e7;                                /* pale green panel */
+  border: 1px solid #008000;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin-right: 1rem;                                 /* 3. spacing between columns */
+  padding-bottom: .5rem;
+}
+
+main > section > div:last-child{ margin-right: 0; }   /* 4. no right margin on last */
+
+main > section > div > h2{                            /* 5. green bar heading */
+  background: #008000;
+  color: #fff;
+  margin: 0;                                          /* remove top margin */
+  padding: .4rem .6rem;
+  border-radius: 10px 10px 0 0;                       /* rounded top corners only */
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+main > section > div img{                             /* 6. framed image inside panel */
+  display: block;                                     /* allows centering with auto margins */
+  margin: .5rem auto;
+  border: 3px double #333;
+  max-width: 90%;
+  height: auto;
+}
+
+main > section > div a{ text-decoration: none; }
+main > section > div a p{ margin: .3rem 0 .6rem; color: #008000; }
+
+/* =========================
+   Footer
+   ========================= */
+footer{
+  width: 90%;
+  max-width: 1200px;
+  margin: 1.25rem auto 2rem;
+  color: #333;
+  font-size: .9rem;
+}
