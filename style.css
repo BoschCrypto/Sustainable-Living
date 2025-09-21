@@ -17,12 +17,17 @@ body {                                                /* 2. base font + remove m
 
 /* 3. header, nav ul, and content wrapper centered to 90% width / max 1200px */
 header,
-nav ul,
-#content-wrapper {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;                                     /* center them */
+/* Nav links start just to the right of the J */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* key changes */
+  text-align: left;     /* was center */
+  padding-left: 70px;   /* pushes links to the right of the J; tweak 60–80px if needed */
 }
+
 
 /* 4. hyperlink color */
 a { color: #008000; }
